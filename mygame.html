@@ -1,0 +1,57 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title> 
+            TheGame 
+        </title> 
+        <link rel="stylesheet" href="mygame.css"> 
+    </head> 
+    <body> 
+        <div class="container"> 
+            <div class="header-container">
+                <div class="title-container">
+                    <h1>Dino Runner</h1>
+                </div>
+                <div class="score-container">
+                    <h1>score: XX</h1>
+                </div>
+            </div>
+            <div class="game-container">
+                <div class="dino"></div>
+            </div>
+        </div> 
+    </body> 
+    <script>
+        async function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        const DINO = document.querySelector('.dino');
+        let isJumping = false;
+
+        async function jump(e) {
+            if (isJumping) {
+                return;
+            }
+            isJumping = true;
+            DINO.classList.add("dino-jump");
+            await sleep(500);
+            DINO.classList.remove("dino-jump");
+            await sleep(500);
+            isJumping = false;
+        }
+
+        document.addEventListener("click", jump);
+        
+        async function game() {
+            while (true) {
+                DINO.classList.add("dino2");
+                await sleep(300);
+                DINO.classList.remove("dino2");
+                await sleep(300);
+            }
+        }
+
+        game();
+    </script>
+</html>
